@@ -1,0 +1,26 @@
+package Tb1.Grupo2;
+
+import Tb1.Grupo1.*;
+
+public class SimplePath extends Path{
+
+    private Place first;
+    private Place last;
+
+    public SimplePath(Place first, Place last, double d){
+        super(d);
+        this.first = first;
+        this.last = last;
+    }
+
+    public Place getFirstPlace(){
+        return this.first;
+    }
+    public Place getLastPlace(){
+        return this.last;
+    }
+    public Place[] getPlaces(){
+        Place[] places= { this.first, this.last};
+        return places;
+    }
+}
