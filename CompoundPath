@@ -1,0 +1,39 @@
+package Tb1.Grupo2;
+
+import java.util.Arrays;
+import Tb1.Grupo1.*;
+
+public class CompoundPath extends Path {
+
+    protected Path[] paths;
+
+    public CompoundPath (int n, Path...paths) throws Exception{
+        super(sumDistances(n,paths));
+        this.paths= Arrays.copyOf(paths,n);
+
+    }
+
+    public Place[] getPlaces(){
+        int i;
+        Place[] allPlaces ={} ;
+        for(i=0; i < paths.length; i++){
+            allPlaces[i] = (Place)paths[i];
+        }
+
+        return allPlaces;
+    }
+    public abstract Place[] getFirstPlace(){
+       Place s;
+        s=City.getName();
+
+    }
+
+    public String toString(){
+        return getFirstPlace().getName()+" -> "+ getLastPlace().getName()+": "+distance+"km";}
+    }
+
+    public Place getLastPlace(){
+
+    }
+
+}
