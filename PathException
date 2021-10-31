@@ -1,0 +1,12 @@
+package Tb1.Grupo2;
+
+public class PathException extends Exception{
+
+    public String Exception(String mens){
+
+        public String getMessage(){
+            return "Deu exeção" ;
+        }
+    }
+
+}
