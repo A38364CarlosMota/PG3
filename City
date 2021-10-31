@@ -1,0 +1,131 @@
+package Tb1.Grupo1;
+
+import Tb1.Grupo2.Place;
+
+import static java.lang.Integer.parseInt;
+import static java.lang.Math.exp;
+import static java.lang.String.*;
+import java.util.ArrayList;
+
+public class City implements Place {
+    private final String name, country;
+    private int population;
+    private final int area; // Em km²
+    public double newPopulation, oldPopulation;
+
+    public int getArea() {
+        return this.area;
+    }
+
+    public int getPopulation() {
+        return this.population;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getCountry() {
+        return this.country;
+    }
+
+    public double PopulationDensity(int population, int area) {
+        double pop =population / area;
+        return pop;
+    }
+
+    public double populationChange(int taxa) {
+        oldPopulation = getPopulation();
+        newPopulation = oldPopulation * Math.exp(taxa);
+        return newPopulation;
+    }
+
+    public City(String name, String country, int population, int area) {
+        this.name = name;
+        this.country = country;
+        this.population = population;
+        this.area = area;
+    }
+
+    public int compareTo(City area2) {
+
+        return (this.area - area2.area);
+    }
+
+    public static City getCity(String x) {
+
+        int indexCountry = x.indexOf(":", 0);
+        int indexName = x.indexOf("-", indexCountry + 1);
+        int indexArea = x.indexOf("km²:", indexName + 1);
+        int indexPopulation = (indexArea + 3);
+
+        String country = x.substring(0, indexCountry).trim();
+        String name = x.substring(indexCountry+1, indexName).trim();
+        String area = x.substring(indexName+1, indexArea).trim();
+        String population = x.substring(indexPopulation+1).trim();
+
+        int areaInt = parseInt(area);
+        int populationInt = parseInt(population);
+
+        City c = new City(name, country, populationInt, areaInt);
+        return c;
+
+    }
+
+    public City(String nm, int p, int a) {
+        this.name = nm;
+        this.country = "Portugal";
+        this.population = p;
+        this.area = a;
+    }
+
+    public String toString() {
+        return country + ":" + name + " - " + area + "km²:" + population;
+    }
+
+    public boolean equals(Object other) {
+        if (other instanceof City) {
+            City o = (City) other;
+            return ((this.name.equals(o.name)) && (this.country.equals(o.country)) && (this.population == o.population) && (this.area == o.area));
+        }
+        return false;
+    }
+
+    public static int getCountryCitiesCount(City c[], String nm){
+        int i;
+        int count=0;
+        int d = c.length;
+        for(i=0; i<d ;i++){
+            if(nm.equals(c[i].country)){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static City smallerCities(City...param){
+
+        int i;
+        int aux=0;
+        for(i=0; i < param.length; i++) {
+                if( param[i].compareTo(param[aux]) < 0 ) {
+                    aux=i;
+                }
+            }
+        return param[aux];
+        }
+
+    public static City[] getTop10(City...param ){
+        int i,o;
+        City[] top10 = new City[param.length];
+
+        for(i=0 ; i < param.length-1 ; i++){
+            for(o=0; o < param.length-1; o++){
+                if(param[i].compareTo(param[o]) >0) {
+                    top10[i]=param[i];
+                }
+            }
+        }
+        return top10 ;
+    }
+}
