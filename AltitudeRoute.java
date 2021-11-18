@@ -1,3 +1,5 @@
+package Grupo3;
+
 public class AltitudeRoute implements Route {
 
     public int min;
@@ -14,5 +16,13 @@ public class AltitudeRoute implements Route {
 
     public int getMaxAltitude(){
         return this.max;
+    }
+
+    public boolean equals( Object o){
+        if( o instanceof AltitudeRoute a){
+          //  AltitudeRoute a = (AltitudeRoute)o ;
+            return this.min==a.min && this.max == a.max ;
+        }
+        return false;
     }
 }

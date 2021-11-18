@@ -1,5 +1,5 @@
-/*
-package trab1.grupo3;
+package Grupo3;
+
 
 import org.junit.jupiter.api.Test;
 
@@ -51,4 +51,3 @@ public class TestMilitaryAircraft {
     }
 
 }
-*/

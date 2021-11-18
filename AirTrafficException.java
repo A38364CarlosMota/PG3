@@ -1,3 +1,5 @@
+package Grupo3;
+
 public class AirTrafficException extends Exception{
 
     public AirTrafficException(){

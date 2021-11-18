@@ -1,5 +1,4 @@
-/*
-package trab1.grupo3;
+package Grupo3;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +14,7 @@ public class TestCivitAircraft {
         assertFalse( plain.isArmed() );
         assertSame( GEO_POS, plain.getGeoPos() );
         assertEquals( new AltitudeRoute(10000, 11500),  plain.route );
-        assertEquals( 100,  plain.getPassengersNum() );
+        assertEquals( 100,  plain.getNumberOfPassengers() );
     }
 
     @Test
@@ -31,4 +30,3 @@ public class TestCivitAircraft {
         assertEquals("Aviso: aeronave fora da rota", e.getMessage());
     }
 }
-*/

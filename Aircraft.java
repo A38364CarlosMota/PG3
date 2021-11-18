@@ -1,3 +1,5 @@
+package Grupo3;
+
 public abstract class  Aircraft {
     private String flightId;
     private GeoPos geoPos;
@@ -12,14 +14,21 @@ public abstract class  Aircraft {
     public abstract boolean isArmed();
 
     public GeoPos getGeoPos(){
-        return geoPos;
+        return this.geoPos;
     }
 
-    public final boolean isFligthId(String id){
+    public final boolean isFlightId(String id){
         return this.flightId.equals(id);
     }
 
     public String toString(){
         return flightId + " at " + geoPos;
+    }
+
+    public GeoPos setGeoPos(GeoPos p){
+        GeoPos aux = getGeoPos();
+        this.geoPos = p;
+
+        return aux;
     }
 }

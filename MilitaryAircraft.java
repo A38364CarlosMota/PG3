@@ -1,3 +1,5 @@
+package Grupo3;
+
 public class MilitaryAircraft extends Aircraft{
 
     private final boolean armed;
@@ -16,6 +18,9 @@ public class MilitaryAircraft extends Aircraft{
     }
 
     public String toString(){
+        if(isArmed()){
+            return ("Military "+ super.toString() + " (armed)");
+        }
         return ("Military "+ super.toString());
     }
 }

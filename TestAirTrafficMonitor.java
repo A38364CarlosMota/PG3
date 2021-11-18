@@ -1,5 +1,4 @@
-/*
-package trab1.grupo3;
+package Grupo3;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestAirTrafficMonitor {
 
@@ -16,7 +14,7 @@ public class TestAirTrafficMonitor {
     private static Aircraft[] allAircrafts;
     private static Aircraft[] militaryAircrafts;
 
-    private Aircraft[] getAircrafts() throws AirTrafficException {
+    private Aircraft[] getAllAircrafts() throws AirTrafficException {
         if ( allAircrafts != null) return allAircrafts;
         militaryAircrafts = new Aircraft[]{
             new MilitaryAircraft("FAPT357", new GeoPos(32.4534, 85.5687, 15457), ROUTE, true),
@@ -35,20 +33,22 @@ public class TestAirTrafficMonitor {
     @Test
     public void testAppend() throws AirTrafficException{
         AirTrafficMonitor monitor = new AirTrafficMonitor();
-        Aircraft[] aircrafts = getAircrafts();
+        Aircraft[] aircrafts = getAllAircrafts();
         int size = 0;
         for( Aircraft a: aircrafts ) {
             ++size;
             monitor.append( a );
-            assertEquals( size, monitor.getAircrafts().size());
-            assertTrue(monitor.getAircrafts().contains( a ));
+            assertEquals( size, monitor.getAllAircrafts().size());
+            assertTrue(monitor.getAllAircrafts().contains( a ));
+
         }
-        assertEquals( Arrays.asList( aircrafts ), monitor.getAircrafts() );
+        assertEquals( Arrays.asList( aircrafts ), monitor.getAllAircrafts() );
+
     }
 
     private AirTrafficMonitor getAirTraficMonitor( ) throws AirTrafficException {
         AirTrafficMonitor monitor = new AirTrafficMonitor();
-        for (Aircraft a : getAircrafts())
+        for (Aircraft a : getAllAircrafts())
                 monitor.append(a);
         return monitor;
     }
@@ -57,14 +57,13 @@ public class TestAirTrafficMonitor {
     public void testFind() throws AirTrafficException {
         AirTrafficMonitor monitor = getAirTraficMonitor();
         List<Aircraft> l = monitor.find( a -> a instanceof MilitaryAircraft );
-       // assertTrue(l.equals( militaryAircrafts ));
         assertEquals(Arrays.asList(militaryAircrafts), l );
     }
 
     @Test
     public void testcheckRouteAltitudes() throws AirTrafficException {
         AirTrafficMonitor monitor = getAirTraficMonitor();
-        List<Aircraft> aircrafts = monitor.getAircrafts();
+        List<Aircraft> aircrafts = monitor.getAllAircrafts();
         aircrafts.get( 0 ).setGeoPos(new GeoPos(32.4534, 85.5687, ROUTE.getMinAltitude()-1000));
         aircrafts.get(aircrafts.size()-1 ).setGeoPos(new GeoPos(32.4534, 85.5687, ROUTE.getMaxAltitude()+1000));
         List<Aircraft> l = monitor.checkRouteAltitudes( );
@@ -74,13 +73,14 @@ public class TestAirTrafficMonitor {
     @Test
     public void testRemoveCivilNoPassengers() throws AirTrafficException {
         AirTrafficMonitor monitor = getAirTraficMonitor();
-        List<Aircraft> aircrafts = monitor.getAircrafts();
+        List<Aircraft> aircrafts = monitor.getAllAircrafts();
         int size= aircrafts.size();
         monitor.removeCivilNoPassengers();
         assertEquals( size-3, aircrafts.size());
         for ( Aircraft a:aircrafts ) {
             if ( a instanceof CivilAircraft c)
-                assertTrue( c.getPassengersNum() != 0 );
+                assertTrue( c.getNumberOfPassengers() != 0 );
+
         }
     }
 
@@ -94,4 +94,3 @@ public class TestAirTrafficMonitor {
     }
 
 }
-*/

@@ -1,3 +1,5 @@
+package Grupo3;
+
 public class GeoPos {
 
     private double la, lo;
@@ -19,7 +21,7 @@ public class GeoPos {
     }
 
     public boolean isNear ( GeoPos p){
-        return Math.abs(this.al - al) < 1000;
+        return Math.abs(this.al - p.al) < 1000;
     }
 
     public String toString(){
